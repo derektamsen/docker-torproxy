@@ -1,0 +1,18 @@
+---
+version: '2'
+services:
+  proxy:
+    container_name: torproxy
+    build: .
+    image: derektamsen/torproxy
+    mem_limit: 512m
+    cpu_shares: 512
+    read_only: true
+    volumes:
+      - data:/data
+    restart: on-failure:5
+    ports:
+      - "9050"
+volumes:
+  data:
+    driver: local
